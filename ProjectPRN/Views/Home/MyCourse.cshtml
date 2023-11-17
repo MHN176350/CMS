@@ -1,0 +1,403 @@
+﻿@*
+    For more information on enabling MVC for empty projects, visit https://go.microsoft.com/fwlink/?LinkID=397860
+*@
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using ProjectPRN.Models
+@model CourseContent
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title>Villa Agency - Property Listing by TemplateMo</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/assets/css/templatemo-villa-agency.css">
+    <link rel="stylesheet" href="/assets/css/owl.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet" href="https://unpkg.com/swiper@7/swiper-bundle.min.css" />
+    <!--
+
+    TemplateMo 591 villa agency
+
+    https://templatemo.com/tm-591-villa-agency
+
+    -->
+    <script>
+        var links = document.getElementsByClassName('del');
+
+        for (var i = 0, l = links.length; i < l; i++) {
+            links[i].addEventListener('click', function (e) {
+                var ok = confirm('Would you like to delete this submission?');
+                if (!ok) {
+                    // Prevent the link from going to its default href
+                    e.preventDefault();
+                    // Go to help center
+                }
+                // Otherwise, do nothing.
+            });
+        }
+        </script>
+</head>
+
+<body>
+
+    <!-- ***** Preloader Start ***** -->
+    <div id="js-preloader" class="js-preloader">
+        <div class="preloader-inner">
+            <span class="dot"></span>
+            <div class="dots">
+                <span></span>
+                <span></span>
+                <span></span>
+            </div>
+        </div>
+    </div>
+    <!-- ***** Preloader End ***** -->
+
+    <div class="sub-header">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8 col-md-8">
+                    <ul class="info">
+                        <li><img src="~/assets/images/2020-FPTU-Eng.png"></img></li>
+
+                    </ul>
+                </div>
+                <div class="col-lg-4 col-md-4">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- ***** Header Area Start ***** -->
+    <header class="header-area header-sticky">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <nav class="main-nav">
+                        <!-- ***** Logo Start ***** -->
+                        <a href="index.html" class="logo">
+                            <h1>CMS</h1>
+                        </a>
+                        <!-- ***** Logo End ***** -->
+                        <!-- ***** Menu Start ***** -->
+                        <ul class="nav">
+                            <li><a asp-action="Index" asp-controller="Home" >Home</a></li>
+                            <li><a asp-action="Subjects" asp-controller="Home">Courses</a></li>
+
+
+                            @if (ViewBag.name == null)
+                            {
+                                <li><a asp-action="login"><i class="fa fa-user"></i> Login</a></li>
+                            }
+                            else
+
+                            {
+
+                                <li><a asp-action="MyCourse" asp-controller="Home" class="active">My Course</a></li>
+                                <li><a asp-action="Dashboard" asp-controller="Home">@ViewBag.name</a></li>
+                            }
+                        </ul>
+                        <a class='menu-trigger'>
+                            <span>Menu</span>
+                        </a>
+                        <!-- ***** Menu End ***** -->
+                    </nav>
+                </div>
+            </div>
+        </div>
+    </header>
+    <!-- ***** Header Area End ***** -->
+
+    <div class="page-heading header-text">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-12">
+                    <span class="breadcrumb"><a href="#">Home</a> / Properties</span>
+                    <h3>Properties</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="section properties">
+        <div class="container">
+            <ul class="properties-filter">
+
+                <li>
+                    @if (ViewBag.cur == 0)
+                    {
+                        <a asp-action="MyCourse" class="is_active" asp-controller="Home" asp-route-id="0">Index</a>
+                    }
+                    else
+                    {
+
+                        <a asp-action="MyCourse" asp-controller="Home" asp-route-id="0">Show All</a>
+                    }
+                </li>
+                @foreach (Course c in ViewBag.Course)
+                {
+                    <li>
+                        @if (ViewBag.cur == c.Id)
+                        {
+                            <a asp-action="MyCourse" class="is_active" asp-controller="Home" asp-route-id="@c.Id">@c.Code (@c.Weeks Week) </a>
+                        }
+                        else
+                        {
+
+                            <a asp-action="MyCourse" asp-controller="Home" asp-route-id="@c.Id">@c.Code (@c.Weeks Week)</a>
+                        }
+                    </li>
+                }
+            </ul>
+            <script>
+                function updateCountdown(targetDate) {
+                    var countdownElement = document.getElementById("countdown");
+                    // Update the countdown every 1 second
+                    var countdownInterval = setInterval(function () {
+                        // Get the current date and time
+                        var currentDate = new Date().getTime();
+
+                        // Calculate the remaining time
+                        var remainingTime = targetDate - currentDate;
+
+                        // Calculate the days, hours, minutes, and seconds
+                        var days = Math.floor(remainingTime / (1000 * 60 * 60 * 24));
+                        var hours = Math.floor((remainingTime % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+                        var minutes = Math.floor((remainingTime % (1000 * 60 * 60)) / (1000 * 60));
+                        var seconds = Math.floor((remainingTime % (1000 * 60)) / 1000);
+
+                        // Display the countdown
+                        var countdownString = days + "d " + hours + "h " + minutes + "m " + seconds + "s";
+                        countdownElement.innerHTML = countdownString;
+                        // If the countdown is finished, display the pop-up form
+                        if (remainingTime <= 0) {
+                            clearInterval(countdownInterval);
+                            countdownElement.innerHTML = "Course Overdue!"
+                            displayForm(); // Call the function to display the pop-up form
+                        }
+                    }, 1000); // Update the countdown every 1 second
+                }
+
+
+
+                // Call the updateCountdown function with the target date when the page is loaded
+                window.onload = function () {
+                    var targetDate = new Date('@ViewBag.end').getTime();
+                    updateCountdown(targetDate);
+                };
+
+            </script>
+           
+
+            @if (ViewBag.cur != 0)
+            {
+                <div style="align-self:center;margin-bottom:20px"> <h1>Remaining Time</h1><div id="countdown"></div></div>
+               
+                    <div class="accordion" id="accordionExample">
+
+
+                        <div class="accordion-item" id="ct">
+                            <h2 class="accordion-header" id="headingOne">
+                                <button class="accordion-button" type="button" data-bs-toggle="collapse" data-bs-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
+                                    Week 1(@ViewBag.std - @(ViewBag.std.AddDays(7)))
+                                </button>
+                            </h2>
+                            <div id="collapseOne" class="accordion-collapse collapse show" aria-labelledby="headingOne" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <code><a asp-action="Download" asp-controller="Home" asp-route-fn="@Model.W1"> Download learning source </a></code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingTwo">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
+                                    Week 2(@(ViewBag.std.AddDays(7)) - @(ViewBag.std.AddDays(7*2)))
+                                </button>
+                            </h2>
+                            <div id="collapseTwo" class="accordion-collapse collapse" aria-labelledby="headingTwo" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <code><a  asp-action="Download" asp-controller="Home" asp-route-fn="@Model.W2">Download Assignment</a></code>
+                                    @foreach (Progress i in ViewBag.prog)
+                                    {
+                                        if (i.As1 == null && i.EIdNavigation.Ovd == 0)
+
+                                        {
+                                            <form method="post" enctype="multipart/form-data" asp-action="Upload" asp-controller="Home" style="margin-top:10px" id="">
+                                                <div class="form-group">
+                                                    <label for="file">Submit Your Work:</label>
+                                                    <input type="file" name="file" id="file" class="form-control-file">
+                                                    <input type="hidden" name="type" value="1">
+                                                    <input type="hidden" name="c" value="@Model.CId">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                            </form>
+                                        }
+                                        if (i.As1 != null)
+
+                                        {
+                                            <code style="margin-left:250px"><a asp-action="DownloadSubmit" asp-controller="Home" asp-route-fn="@i.As1" asp-route-c="@Model.CId">View Submission for Assignment 1</a></code>
+                                        }
+                                        if (i.As1 != null && i.Ed1 > 0)
+                                        {
+                                            <code style="margin-left:300px"><a name="del" asp-action="Delete" asp-controller="Home" asp-route-fn="@i.As1" asp-route-c="@Model.CId" asp-route-type="1">Edit</a></code>
+
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingThree">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
+                                    Week 3(@(ViewBag.std.AddDays(7)) - @(ViewBag.std.AddDays(7*2)))
+                                </button>
+                            </h2>
+                            <div id="collapseThree" class="accordion-collapse collapse" aria-labelledby="headingThree" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <code><a asp-action="Download" asp-controller="Home" asp-route-fn="@Model.W3">Download learning source</a></code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFour">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFour" aria-expanded="false" aria-controls="collapseThree">
+                                    Week 4(@(ViewBag.std.AddDays(7*3)) - @(ViewBag.std.AddDays(7*4)))
+                                </button>
+                            </h2>
+                            <div id="collapseFour" class="accordion-collapse collapse" aria-labelledby="headingFour" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <code><a asp-action="Download" asp-controller="Home" asp-route-fn="@Model.W4">Download Assignment 2</a></code>
+                                    @foreach (Progress i in ViewBag.prog)
+                                    {
+                                        if (i.As2 == null && i.EIdNavigation.Ovd == 0)
+
+                                        {
+                                            <form method="post" enctype="multipart/form-data" asp-action="Upload" asp-controller="Home" style="margin-top:10px">
+                                                <div class="form-group">
+                                                    <label for="file">Submit Your Work:</label>
+                                                    <input type="file" name="file" id="file" class="form-control-file">
+                                                    <input type="hidden" name="type" value="2">
+                                                    <input type="hidden" name="c" value="@Model.CId">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                            </form>
+                                        }
+                                        if (i.As2 != null)
+
+                                        {
+                                            <code style="margin-left:250px"><a asp-action="DownloadSubmit" asp-controller="Home" asp-route-fn="@i.As2" asp-route-c="@Model.CId">View Submission for Assignment 2</a></code>
+                                        }
+                                        if (i.As2 != null && i.Ed2 > 0)
+                                        {
+                                            <code style="margin-left:300px"><a name="del" asp-action="Delete" asp-controller="Home" asp-route-fn="@i.As2" asp-route-c="@Model.CId" asp-route-type="2">Edit</a></code>
+
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingFive">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseFive" aria-expanded="false" aria-controls="collapseThree">
+                                    Week 5(@(ViewBag.std.AddDays(7 * 4)) - @(ViewBag.std.AddDays(7*5)))
+                                </button>
+                            </h2>
+                            <div id="collapseFive" class="accordion-collapse collapse" aria-labelledby="headingFive" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <code><a asp-action="Download" asp-controller="Home" asp-route-fn="@Model.W5">Download learning source</a></code>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="accordion-item">
+                            <h2 class="accordion-header" id="headingSix">
+                                <button class="accordion-button collapsed" type="button" data-bs-toggle="collapse" data-bs-target="#collapseSix" aria-expanded="false" aria-controls="collapseThree">
+                                    Week 6(@(ViewBag.std.AddDays(7*5)) - @(ViewBag.std.AddDays(7*6)))
+                                </button>
+                            </h2>
+                            <div id="collapseSix" class="accordion-collapse collapse" aria-labelledby="headingSix" data-bs-parent="#accordionExample">
+                                <div class="accordion-body">
+                                    <code><a asp-action="Download" asp-controller="Home" asp-route-fn="@Model.W6">Download Assignment 3</a></code>
+                                    @foreach (Progress i in ViewBag.prog)
+                                    {
+                                        if (i.As3 == null && i.EIdNavigation.Ovd == 0)
+
+                                        {
+                                            <form method="post" enctype="multipart/form-data" asp-action="Upload" asp-controller="Home" style="margin-top:10px">
+                                                <div class="form-group">
+                                                    <label for="file">Submit Your Work:</label>
+                                                    <input type="file" name="file" id="file" class="form-control-file">
+                                                    <input type="hidden" name="type" value="3">
+                                                    <input type="hidden" name="c" value="@Model.CId">
+                                                </div>
+                                                <button type="submit" class="btn btn-primary">Upload</button>
+                                            </form>
+                                        }
+                                        if (i.As3 != null)
+
+                                        {
+                                            <code style="margin-left:250px"><a asp-action="DownloadSubmit" asp-controller="Home" asp-route-fn="@i.As3" asp-route-c="@Model.CId">View Submission for Assignment 3</a></code>
+
+                                            if (i.As3 != null && i.Ed3 > 0)
+                                            {
+                                                <code style="margin-left:300px"><a name="del" asp-action="Delete" asp-controller="Home" asp-route-fn="@i.As3" asp-route-c="@Model.CId" asp-route-type="3">Edit</a></code>
+
+                                            }
+                                        }
+                                    }
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                
+            }
+            
+            else
+            {
+
+
+                <div class="row">
+                    <div class="col-lg-12">
+                        Start learning now!!!
+                    </div>
+                </div>
+            }
+            <div class="row">
+                <div class="col-lg-12">
+                </div>
+            </div>
+        </div>
+
+        <footer>
+            <div class="container">
+                <div class="col-lg-12">
+                    <p>
+                        Copyright © 2048 Villa Agency Co., Ltd. All rights reserved.
+
+                        Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a> Distribution: <a href="https://themewagon.com">ThemeWagon</a>
+                    </p>
+                </div>
+            </div>
+        </footer>
+
+        <!-- Scripts -->
+        <!-- Bootstrap core JavaScript -->
+        <script src="/vendor/jquery/jquery.min.js"></script>
+        <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+        <script src="/assets/js/isotope.min.js"></script>
+        <script src="/assets/js/owl-carousel.js"></script>
+        <script src="/assets/js/counter.js"></script>
+        <script src="/assets/js/custom.js"></script>
+
+</body>
+</html>
+

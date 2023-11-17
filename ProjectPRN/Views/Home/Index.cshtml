@@ -1,0 +1,246 @@
+﻿
+@addTagHelper *, Microsoft.AspNetCore.Mvc.TagHelpers
+@using ProjectPRN.Models
+@model List<Course>
+
+<!DOCTYPE html>
+<html lang="en">
+
+  <head>
+
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100;200;300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+
+    <title> COURSE MANAGEMENT SYSTEM</title>
+
+    <!-- Bootstrap core CSS -->
+    <link href="/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
+
+
+    <!-- Additional CSS Files -->
+    <link rel="stylesheet" href="/assets/css/fontawesome.css">
+    <link rel="stylesheet" href="/assets/css/templatemo-villa-agency.css">
+    <link rel="stylesheet" href="/assets/css/owl.css">
+    <link rel="stylesheet" href="/assets/css/animate.css">
+    <link rel="stylesheet"href="https://unpkg.com/swiper@7/swiper-bundle.min.css"/>
+    
+  </head>
+
+<body>
+
+  <!-- ***** Preloader Start ***** -->
+  <div id="js-preloader" class="js-preloader">
+    <div class="preloader-inner">
+      <span class="dot"></span>
+      <div class="dots">
+        <span></span>
+        <span></span>
+        <span></span>
+      </div>
+    </div>
+  </div>
+  <!-- ***** Preloader End ***** -->
+
+  <div class="sub-header">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-8 col-md-8">
+          <ul class="info">
+            <li><img src="~/assets/images/2020-FPTU-Eng.png"></img></li>
+            
+          </ul>
+        </div>
+        <div class="col-lg-4 col-md-4">
+         
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ***** Header Area Start ***** -->
+  <header class="header-area header-sticky">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <nav class="main-nav">
+                    <!-- ***** Logo Start ***** -->
+                    <a href="index.html" class="logo">
+                        <h1>CMS</h1>
+                    </a>
+                    <!-- ***** Logo End ***** -->
+                    <!-- ***** Menu Start ***** -->
+                    <ul class="nav">
+                      <li><a asp-action="Index" asp-controller="Home" class="active">Home</a></li>
+                            <li><a asp-action="Subjects" asp-controller="Home">Courses</a></li>
+                      
+                            
+                            @if (@Model == null)
+                            {
+                                <li><a asp-action="login"><i class="fa fa-user"></i> Login</a></li>
+                            }else
+
+                            {
+                               
+                                <li><a asp-action="MyCourse" asp-controller="Home">My Course</a></li>
+                                <li><a asp-action="Dashboard" asp-controller="Home">@ViewBag.st</a></li>
+                            }
+                        </ul>   
+                    <a class='menu-trigger'>
+                        <span>Menu</span>
+                    </a>
+                    <!-- ***** Menu End ***** -->
+                </nav>
+            </div>
+        </div>
+    </div>
+  </header>
+  <!-- ***** Header Area End ***** -->
+
+  <div class="main-banner">
+    <div class="owl-carousel owl-banner">
+      <div class="item item-1">
+        <div class="header-text">
+          <span class="category">FPT <em>University</em></span>
+          <h2>FPT's<br>COURSE MANAGEMENT SYSTEM</h2>
+        </div>
+      </div>
+      <div class="item item-2">
+        <div class="header-text">
+                    <span class="category">FPT <em>University</em></span>
+                    <h2>FPT's<br>COURSE MANAGEMENT SYSTEM</h2>
+        </div>
+      </div>
+      <div class="item item-3">
+        <div class="header-text">
+                    <span class="category">FPT <em>University</em></span>
+                    <h2>FPT's<br>COURSE MANAGEMENT SYSTEM</h2>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="featured section">
+    <div class="container">
+            <div id="region-main-box" class="row col-12 p-0">
+                <section id="region-main">
+                    <div id="defaultfrontpagebody" class="mb-4">
+                        <fieldset style="background: #ffff66;">
+                            <legend><span style="font-size: 30px;"><strong><span style="color: #ff0000;">Thông báo: Từ tháng 1/2024</span></strong> </span> </legend>
+                            <p style="margin-left: 10px; text-align: center; font-size: 20px; font-family:Arial,Helvetica,sans-serif;"><strong>Tại cơ sở FPT Hòa Lạc sẽ ngừng phát WIFI trên băng tần 2.4Ghz. Chỉ phát WIFI trên băng tần 5Ghz.</strong></p>
+                            <p style="margin-left: 10px; padding-left: 120px;">Hướng dẫn dưới đây để biết máy laptop cá nhân của mình đang hỗ trợ / kết nối trên băng tần 5Ghz:</p>
+                            <ol>
+                                <li style="list-style-type: none;">
+                                    <ol>
+                                        <li style="list-style-type: none;">
+                                            <ol>
+                                                <li style="list-style-type: none;">
+                                                    <ol>
+                                                        <li style="list-style-type: none;">
+                                                            <ol>
+                                                                <li><span style="text-decoration: underline;">Cách 1:</span> Máy có thế thấy và kết nối đến&nbsp; SSID: "FUHL-Register Your Laptop"</li>
+                                                                <li><span style="text-decoration: underline;">Cách 2:</span> Tại cửa sổ CMD chạy câu lệnh: "netsh wlan show drivers"</li>
+                                                            </ol>
+                                                        </li>
+                                                    </ol>
+                                                </li>
+                                            </ol>
+                                        </li>
+                                    </ol>
+                                </li>
+                            </ol>
+                            <p style="margin-left: 40px; padding-left: 160px;"><img class="atto_image_button_text-bottom" style="font-size: 0.9375rem; height: 198px; width: 384px;" src="https://chgpwd.fpt.edu.vn/rtaImage.jpg" alt="card"></p>
+                            <ul>
+                                <li style="list-style-type: none;">
+                                    <ul>
+                                        <li style="list-style-type: none;">
+                                            <ul>
+                                                <li style="list-style-type: none;">
+                                                    <ul>
+                                                        <li style="list-style-type: none;">
+                                                            <ul>
+                                                                <li style="list-style-type: none;">
+                                                                    <ul>
+                                                                        <li style="list-style-type: none;">
+                                                                            <ul>
+                                                                                <li style="list-style-type: none;">
+                                                                                    <ul>
+                                                                                        <li style="list-style-type: none;">
+                                                                                            <ul>
+                                                                                                <li style="list-style-type: none;">
+                                                                                                    <ul>
+                                                                                                        <li style="list-style-type: none;">
+                                                                                                            <ul>
+                                                                                                                <li><span style="font-size: 0.9375rem;">Tại dòng "Radio types supported" cho thấy kiểu hỗ trợ kết nối.</span></li>
+                                                                                                                <li>Các chuẩn hỗ trợ kết nối trên băng tần 5Ghz hiện nay bao gồm: 802.11n, 802.11ac, và 802.11ax</li>
+                                                                                                            </ul>
+                                                                                                        </li>
+                                                                                                    </ul>
+                                                                                                </li>
+                                                                                            </ul>
+                                                                                        </li>
+                                                                                    </ul>
+                                                                                </li>
+                                                                            </ul>
+                                                                        </li>
+                                                                    </ul>
+                                                                </li>
+                                                            </ul>
+                                                        </li>
+                                                    </ul>
+                                                </li>
+                                            </ul>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                            <p style="margin-left: 10px; text-align: center; font-family:Arial,Helvetica,sans-serif;"><strong>LAPTOP KHÔNG HỖ TRỢ KẾT NỐI WIFI TRÊN BĂNG TẦN 5GHZ, HÃY NÂNG CẤP NGAY <span style="color: #0000ff;">WIRELESS CARD</span> TRƯỚC THỜI ĐIỂM 1/2024.</strong></p>
+                        </fieldset>
+                    </div>
+                    <span class="notifications" id="user-notifications"></span>
+                    <div role="main"><span id="maincontent"></span><br /></div>
+
+
+
+                </section>
+            </div>
+                @if(Model!=null){
+                    <div style="margin-left:500px">
+                        <div>Search Courses:</div>
+                    <div style="align-content:center"><form method="post" asp-action="Subjects" asp-controller="Home"><div><input type="text" name="kw" /> </div>
+                        <div><input type="submit" value="Go" class="btn-outline-dark" style="margin-top:10px; margin-left:75px;background-color:black;color:white"></div></form></div>
+                    <div style="margin-top:20px"><a> Course List:</a></div>
+            <ul>
+               @foreach (Course c in Model){
+                   <li style="margin-top:10px"><a asp-action="Detail" asp-controller="Home" asp-route-id="@c.Id" style="color:orange   ">->@c.Code</a></li>
+               }
+            </ul>
+            </div>
+              }
+             
+    </div>
+  </div>
+
+  
+
+  <footer>
+    <div class="container">
+      <div class="col-lg-8">
+        <p>Copyright © 2048 Villa Agency Co., Ltd. All rights reserved. 
+        
+        Design: <a rel="nofollow" href="https://templatemo.com" target="_blank">TemplateMo</a> Distribution: <a href="https://themewagon.com">ThemeWagon</a></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Scripts -->
+  <!-- Bootstrap core JavaScript -->
+  <script src="/vendor/jquery/jquery.min.js"></script>
+  <script src="/vendor/bootstrap/js/bootstrap.min.js"></script>
+  <script src="/assets/js/isotope.min.js"></script>
+  <script src="/assets/js/owl-carousel.js"></script>
+  <script src="/assets/js/counter.js"></script>
+  <script src="/assets/js/custom.js"></script>
+
+  </body>
+</html>
